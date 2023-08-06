@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import Logo from "./logo";
 import { useRouter } from "next/router";
+import LinkedIcon, { GithubIcon } from "./icons";
+import { motion } from "framer-motion";
 
 interface CustomLinkProps {
   href: string;
@@ -37,19 +39,25 @@ const Navbar = () => {
         <CustomLink href={"/article"} title="Articles" className="ml-4" />
       </nav>
 
-      <nav>
-        <Link href="/" target={"_blank"}>
-          F
-        </Link>
-        <Link href="/" target={"_blank"}>
-          F
-        </Link>
-        <Link href="/" target={"_blank"}>
-          F
-        </Link>
-        <Link href="/" target={"_blank"}>
-          F
-        </Link>
+      <nav className="flex items-center justify-center flex-wrap">
+        <motion.a
+          href="https://www.linkedin.com/in/muntasir-kader-anik-620a27143/"
+          target={"_blank"}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-6 mr-3"
+        >
+          <LinkedIcon />
+        </motion.a>
+        <motion.a
+          href="https://github.com/MuntasirAnik"
+          target={"_blank"}
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-6 mr-3"
+        >
+          <GithubIcon />
+        </motion.a>
       </nav>
       <div className="absolute left-[50%] top-2 translate-x-[-50%]">
         <Logo />
