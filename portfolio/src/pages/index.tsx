@@ -23,7 +23,7 @@ export default function Home() {
             </div>
             <div className="w-1/2 flex flex-col items-center self-center">
               <AnimatedText
-                text="Turning Vision Into Reality With Code And Design."
+                text="Turning Vision Into Reality With Code."
                 className="!text-6xl !text-left"
               />
               <p className="my-4 text-base font-medium">
