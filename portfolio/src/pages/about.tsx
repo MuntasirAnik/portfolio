@@ -5,8 +5,13 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import profilePic from "../../public/images/profile/profile-pic-3.jpeg";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
+import Skills from "@/components/skills";
 
-const AnimatedNumber = ({ value }) => {
+interface AnimatedNumberProps {
+  value: number;
+}
+
+const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value }) => {
   const ref = useRef(null);
   const motionValue = useMotionValue(0);
   const sprintValue = useSpring(motionValue, { duration: 5000 });
@@ -21,7 +26,7 @@ const AnimatedNumber = ({ value }) => {
   useEffect(() => {
     sprintValue.on("change", (latest) => {
       if (ref.current && latest.toFixed(0) <= value) {
-        ref.current.textContent = latest.toFixed(0);
+        (ref.current as HTMLElement).textContent = latest.toFixed(0);
       }
     });
   }, [sprintValue, value]);
@@ -78,6 +83,7 @@ const About = () => {
               </div>
             </div>
           </div>
+          <Skills />
         </Layout>
       </main>
     </>

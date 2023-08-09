@@ -34,6 +34,26 @@ const skills = [
         skill: "TAILWIND CSS",
         src: "/../public/skills/tailwind.png",
     },
+    {
+        id: 8,
+        skill: "C#",
+        src: "/../public/skills/c_sharp.png",
+    },
+    {
+        id: 9,
+        skill: "DOT NET CORE",
+        src: "/../public/skills/NET_Core.png",
+    },
+    {
+        id: 10,
+        skill: "SQL",
+        src: "/../public/skills/sql.png",
+    },
+    {
+        id: 11,
+        skill: "SSRS",
+        src: "/../public/skills/SSRS.jpg",
+    },
 
 ];
 export default skills;
