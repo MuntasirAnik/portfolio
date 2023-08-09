@@ -6,6 +6,7 @@ import React, { useEffect, useRef } from "react";
 import profilePic from "../../public/images/profile/profile-pic-3.jpeg";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Skills from "@/components/skills";
+import Experience from "@/components/experience";
 
 interface AnimatedNumberProps {
   value: number;
@@ -84,6 +85,7 @@ const About = () => {
             </div>
           </div>
           <Skills />
+          <Experience />
         </Layout>
       </main>
     </>
