@@ -7,6 +7,7 @@ import profilePic from "../../public/images/profile/profile-pic-3.jpeg";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Skills from "@/components/skills";
 import Experience from "@/components/experience";
+import Education from "@/components/education";
 
 interface AnimatedNumberProps {
   value: number;
@@ -86,6 +87,7 @@ const About = () => {
           </div>
           <Skills />
           <Experience />
+          <Education />
         </Layout>
       </main>
     </>
