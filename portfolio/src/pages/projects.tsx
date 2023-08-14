@@ -43,6 +43,9 @@ const FeaturedProject: React.FC<ProjectProps> = ({
           className="w-full h-auto"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.4 }}
+          priority
+          sizes="(max-width:768px) 100vw,
+                (max-width: 1200px) 50vw,50vw"
         />
       </Link>
       <div className="w-1/2 flex flex-col items-start justify-between pl-6 dark:text-light">

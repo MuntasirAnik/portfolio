@@ -30,6 +30,9 @@ const FeaturedArticle: React.FC<ArticleProps> = ({ img, title, link }) => {
           className="w-full h-auto rounded-lg"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.4 }}
+          priority
+          sizes="(max-width:768px) 100vw,
+                (max-width: 1200px) 50vw,50vw"
         />
       </Link>
       <Link href={link} target="_blank">
