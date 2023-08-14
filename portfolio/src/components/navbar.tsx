@@ -198,9 +198,9 @@ const Navbar = () => {
               className="flex item-center justify-center rounded-full"
             >
               {mode === "dark" ? (
-                <BsFillSunFill className="fill-light" />
+                <BsFillSunFill className="fill-light dark:fill-dark" />
               ) : (
-                <BsFillMoonStarsFill className="fill-dark" />
+                <BsFillMoonStarsFill className="w-6 h-6 rounded-lg border border-solid dark:border-light p-1" />
               )}
             </button>
           </nav>
