@@ -17,8 +17,8 @@ const FramerImage = motion(Image);
 
 const FeaturedArticle: React.FC<ArticleProps> = ({ img, title, link }) => {
   return (
-    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl">
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl" />
+    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl dark:bg-dark dark:border-solid dark:border-2 dark:border-light">
+      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl " />
       <Link
         href={link}
         target="_blank"
@@ -49,7 +49,7 @@ const Publications = () => {
       </Head>
       <main className="w-full mb-16 flex flex-col items-center justify-cnter overflow-hidden">
         <Layout className="pt-16">
-          <ul className="grid grid-cols-2 gap-16">
+          <ul className="grid grid-cols-2 gap-16 dark:text-light">
             <li>
               <FeaturedArticle
                 title="Banking Software Services: Current Status, Challenges, Impact and Prospects"

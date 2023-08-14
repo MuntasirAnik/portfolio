@@ -29,13 +29,13 @@ const FeaturedProject: React.FC<ProjectProps> = ({
   return (
     <article
       className="w-full flex items-center justify-between rounded-3xl border border-solid
-     border-dark bg-light shadow-2xl p-12 relative rounde-br-2xl"
+     border-dark bg-light shadow-2xl p-12 relative rounde-br-2xl dark:bg-dark dark:border-solid dark:border-2 dark:border-light"
     >
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl" />
+      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2.5rem] bg-dark rounded-br-3xl dark:bg-light" />
       <Link
         href={link}
         target="_blank"
-        className="w-1/2 cursor-pointer overflow-hidden rounded-lg"
+        className="w-1/2 cursor-pointer overflow-hidden rounded-lg dark:border-solid dark:border-2"
       >
         <FramerImage
           src={img}
@@ -45,7 +45,7 @@ const FeaturedProject: React.FC<ProjectProps> = ({
           transition={{ duration: 0.4 }}
         />
       </Link>
-      <div className="w-1/2 flex flex-col items-start justify-between pl-6">
+      <div className="w-1/2 flex flex-col items-start justify-between pl-6 dark:text-light">
         <span className="font-medium text-xl">{type}</span>
         <Link
           href={link}
@@ -83,13 +83,13 @@ const Project: React.FC<ProjectProps> = ({
   return (
     <article
       className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
-     bg-light p-6 relative"
+     bg-light p-6 relative dark:bg-dark dark:border-solid dark:border-2 dark:border-light"
     >
-      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl" />
+      <div className="absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl dark:bg-light" />
       <Link
         href={link}
         target="_blank"
-        className="w-full cursor-pointer overflow-hidden rounded-lg"
+        className="w-full cursor-pointer overflow-hidden rounded-lg dark:border-solid dark:border-2 dark:border-light"
       >
         <FramerImage
           src={img}
@@ -99,7 +99,7 @@ const Project: React.FC<ProjectProps> = ({
           transition={{ duration: 0.4 }}
         />
       </Link>
-      <div className="w-full flex flex-col items-start justify-between mt-4">
+      <div className="w-full flex flex-col items-start justify-between mt-4 dark:text-light">
         <span className="font-medium text-xl">{type}</span>
         <Link
           href={link}
