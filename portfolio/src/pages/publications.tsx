@@ -50,8 +50,8 @@ const Publications = () => {
         <title>publications</title>
         <meta name="description" content="description" />
       </Head>
-      <main className="w-full mb-16 flex flex-col items-center justify-cnter overflow-hidden">
-        <Layout className="pt-16">
+      <main className="w-full flex flex-col items-center justify-center overflow-hidden sm:h-[70vh]">
+        <Layout className="pt-24">
           <ul className="grid grid-cols-2 gap-16 dark:text-light md:grid-cols-1 lg:gap-8 md:gap-y-16">
             <li>
               <FeaturedArticle
