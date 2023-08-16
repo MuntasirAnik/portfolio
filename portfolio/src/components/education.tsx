@@ -13,7 +13,7 @@ const Details: React.FC<DetailsProps> = ({ type, time, place }) => {
   return (
     <li
       ref={ref}
-      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between"
+      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%]"
     >
       <LiIcon reference={ref} />
       <motion.div
@@ -21,12 +21,14 @@ const Details: React.FC<DetailsProps> = ({ type, time, place }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.8, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-2xl">{type}&nbsp;</h3>
-        <span className="capitalize font-medium text-dark/75 dark:text-light/75">
+        <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
+          {type}&nbsp;
+        </h3>
+        <span className="capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm">
           {time}
         </span>
         <br />
-        <span className="capitalize font-medium text-dark/75 dark:text-light/75">
+        <span className="capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm">
           {place}
         </span>
       </motion.div>
@@ -42,13 +44,15 @@ const Education = () => {
   });
   return (
     <div className="my-24">
-      <h2 className="font-bold text-8xl mb-28 w-full text-center">Education</h2>
-      <div ref={ref} className="w-[75%] mx-auto relative">
+      <h2 className="font-bold text-8xl mb-28 w-full text-center text-[#5651e5] md:text-6xl xs:text-4xl md:mb-16">
+        Education
+      </h2>
+      <div ref={ref} className="w-[75%] mx-auto relative lg:w-[90%] md:w-full">
         <motion.div
           style={{ scaleY: scrollYProgress }}
-          className="absolute left-9 top-3 w-[4px] h-full bg-dark origin-top dark:bg-light"
+          className="absolute left-9 top-3 w-[4px] h-full bg-dark origin-top dark:bg-light md:w-[2px] md:left-[30px] xs:left-[20px]"
         />
-        <ul className="w-full flex flex-col items-start justify-between ml-4">
+        <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
           <Details
             type="Master of Science In Software Engineering"
             time="2019-present"
