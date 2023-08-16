@@ -36,7 +36,7 @@ const FeaturedArticle: React.FC<ArticleProps> = ({ img, title, link }) => {
         />
       </Link>
       <Link href={link} target="_blank">
-        <h2 className="captalize text-2xl font-bold my-2 hover:underline">
+        <h2 className="captalize text-2xl font-bold my-2 hover:underline xs:text-lg">
           {title}
         </h2>
       </Link>
@@ -52,7 +52,7 @@ const Publications = () => {
       </Head>
       <main className="w-full mb-16 flex flex-col items-center justify-cnter overflow-hidden">
         <Layout className="pt-16">
-          <ul className="grid grid-cols-2 gap-16 dark:text-light">
+          <ul className="grid grid-cols-2 gap-16 dark:text-light md:grid-cols-1 lg:gap-8 md:gap-y-16">
             <li>
               <FeaturedArticle
                 title="Banking Software Services: Current Status, Challenges, Impact and Prospects"
