@@ -7,6 +7,7 @@ import Link from "next/link";
 import React from "react";
 import project1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
 import { motion } from "framer-motion";
+import TransitionEffect from "@/components/transitionEffect";
 
 const FramerImage = motion(Image);
 interface ProjectProps {
@@ -150,6 +151,7 @@ const Projects = () => {
         <title>about</title>
         <meta name="description" content="description" />
       </Head>
+      <TransitionEffect />
       <main className="w-full flex flex-col items-center justify-center">
         <Layout className="pt-16">
           <AnimatedText

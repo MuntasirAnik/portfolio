@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import article from "../../public/images/articles/publications.png";
 import { motion } from "framer-motion";
+import TransitionEffect from "@/components/transitionEffect";
 
 interface ArticleProps {
   img: string;
@@ -50,6 +51,7 @@ const Publications = () => {
         <title>publications</title>
         <meta name="description" content="description" />
       </Head>
+      <TransitionEffect />
       <main className="w-full flex flex-col items-center justify-center overflow-hidden sm:h-[70vh]">
         <Layout className="pt-24">
           <ul className="grid grid-cols-2 gap-16 dark:text-light md:grid-cols-1 lg:gap-8 md:gap-y-16">
