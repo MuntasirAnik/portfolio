@@ -56,16 +56,15 @@ const About = () => {
                 Biography
               </h2>
               <p className="font-medium">
-                Hi, I'm Muntasir, a web developer With almost 2 years of
-                experience in the field. I am always looking for new and
-                innovative ways to bring my clients' visions to life.
+                Hi, I am Muntasir, a web developer With almost 2 years of
+                experience in the field.
               </p>
               <p className="my-4 font-medium">
-                I believe that it's about solving problems and creating
+                I believe that it is about solving problems and creating
                 intuitive, enjoyable experiences for users.
               </p>
               <p className="font-medium">
-                Whether I'm working on a website, I bring my commitment and
+                Whether I am working on a website, I bring my commitment and
                 user-centered thinking to every project I work on. I look
                 forward to the opportunity to bring my skills and passion to
                 your next project.

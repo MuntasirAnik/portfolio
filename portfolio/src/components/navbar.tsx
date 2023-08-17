@@ -15,6 +15,12 @@ interface CustomLinkProps {
   title: string;
   className?: string;
 }
+interface CustomMobileLinkProps {
+  href: string;
+  title: string;
+  className?: string;
+  toggle: any;
+}
 const CustomLink: React.FC<CustomLinkProps> = ({
   href,
   title,
@@ -35,7 +41,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   );
 };
 
-const CustomMobileLink: React.FC<CustomLinkProps> = ({
+const CustomMobileLink: React.FC<CustomMobileLinkProps> = ({
   href,
   title,
   className = "",

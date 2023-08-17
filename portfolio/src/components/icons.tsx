@@ -1,4 +1,9 @@
-const LinkedIcon = (className: any, ...rest: any[]) => (
+import React, { ReactNode } from "react";
+interface IconProps {
+  className?: string;
+  children?: ReactNode;
+}
+const LinkedIcon: React.FC<IconProps> = ({ className = "", ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -20,7 +25,10 @@ const LinkedIcon = (className: any, ...rest: any[]) => (
 );
 export default LinkedIcon;
 
-export const GithubIcon = (className: any, ...rest: any[]) => (
+export const GithubIcon: React.FC<IconProps> = ({
+  className = "",
+  ...rest
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -37,7 +45,7 @@ export const GithubIcon = (className: any, ...rest: any[]) => (
   </svg>
 );
 
-export const LinkArrow = (className: any, ...rest: any[]) => (
+export const LinkArrow: React.FC<IconProps> = ({ className = "", ...rest }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
