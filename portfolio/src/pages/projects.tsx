@@ -2,7 +2,7 @@ import AnimatedText from "@/components/animatedText";
 import { GithubIcon } from "@/components/icons";
 import Layout from "@/components/layout";
 import Head from "next/head";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
 import project1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
@@ -14,7 +14,7 @@ interface ProjectProps {
   type: string;
   title: string;
   summary: string;
-  img: string;
+  img: StaticImageData;
   link: string;
   github: string;
 }
@@ -143,6 +143,7 @@ const Project: React.FC<ProjectProps> = ({
     </article>
   );
 };
+
 
 const Projects = () => {
   return (

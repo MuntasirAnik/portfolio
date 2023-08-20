@@ -1,9 +1,21 @@
-import React from "react";
-import hireme from "../../public/images/circular-text.png";
+import React, { useEffect, useState } from "react";
+import hiremeBlack from "../../public/images/web developer circle logo.svg";
+import hiremeWhite from "../../public/images/web developer circle wh.svg";
 import Image from "next/image";
 import Link from "next/link";
+import useThemeSwitcher from "./hooks/useThemeSwitcher";
 
-const HireMe = () => {
+const HireMe: React.FC = () => {
+  const {mode, setMode} = useThemeSwitcher();
+  const [hiremeSrc, setHiremeSrc] = useState<string>(
+    mode === "dark" ? hiremeWhite : hiremeBlack
+  );
+
+  useEffect(() => {
+    setHiremeSrc(mode === "dark" ? hiremeWhite : hiremeBlack);
+    console.log("mode"+ mode)
+  }, [mode]);
+
   return (
     <div
       className="fixed left-4 bottom-4 flex items-center justify-center overflow-hidden 
@@ -11,9 +23,9 @@ const HireMe = () => {
     >
       <div className="w-48 h-auto flex items-center justify-center relative md:w-24">
         <Image
-          src={hireme}
+          src={hiremeSrc}
           alt="hireme"
-          className="dark:fill-light animate-spin-slow"
+          className="animate-spin-slow"
         />
         <Link
           href="mailto:anik.muntasir005@gmail.com"
@@ -31,3 +43,4 @@ const HireMe = () => {
 };
 
 export default HireMe;
+

@@ -71,7 +71,7 @@ const CustomMobileLink: React.FC<CustomMobileLinkProps> = ({
 };
 
 const Navbar = () => {
-  const [mode, setMode] = useThemeSwitcher();
+  const {mode, setMode} = useThemeSwitcher();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {

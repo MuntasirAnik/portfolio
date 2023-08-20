@@ -31,8 +31,8 @@ const skills = [
     },
     {
         id: 7,
-        skill: "SSRS",
-        src: "/../public/skills/SSRS.jpg",
+        skill: "REPORTING SERVICE (SSRS)",
+        src: "/../public/skills/sql.png",
 
     },
     {
@@ -47,7 +47,7 @@ const skills = [
     },
     {
         id: 10,
-        skill: "NEXTJS",
+        skill: "NEXT JS",
         src: "/../public/skills/nextjs.png",
 
     },
