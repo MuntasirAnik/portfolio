@@ -149,7 +149,7 @@ const Projects = () => {
   return (
     <>
       <Head>
-        <title>about</title>
+        <title>muntasir - projects</title>
         <meta name="description" content="description" />
       </Head>
       <TransitionEffect />

@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 import LinkedIcon, { GithubIcon } from "./icons";
 import { motion } from "framer-motion";
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
-import SunIcon from "./icons";
-import MoonIcon from "./icons";
 import { BsFillSunFill } from "react-icons/bs";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 
