@@ -31,7 +31,20 @@ const useThemeSwitcher = () => {
     handleChange();
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [preferDarkQuery]);
+
+  useEffect(()=>{
+    if (mode === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    if (mode === "light") {
+      document.documentElement.classList.add("light");
+    } else {
+      document.documentElement.classList.remove("light");
+    }
+  })
 
   useEffect(() => {
     if (mode === "dark") {

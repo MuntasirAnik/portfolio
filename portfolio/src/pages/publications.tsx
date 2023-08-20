@@ -48,7 +48,7 @@ const Publications = () => {
   return (
     <>
       <Head>
-        <title>publications</title>
+        <title>muntasir - publications</title>
         <meta name="description" content="description" />
       </Head>
       <TransitionEffect />

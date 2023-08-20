@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import html from "../../public/skills/html.png";
-import skillData from "../../public/skills"; // I assume skillData is an array of skill objects
+import skillData from "../../public/skills"; 
 
 const Skills = () => {
   return (

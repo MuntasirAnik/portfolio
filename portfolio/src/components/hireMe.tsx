@@ -5,16 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
 
-const HireMe: React.FC = () => {
+const HireMe = () => {
   const {mode, setMode} = useThemeSwitcher();
-  const [hiremeSrc, setHiremeSrc] = useState<string>(
-    mode === "dark" ? hiremeWhite : hiremeBlack
-  );
-
-  useEffect(() => {
-    setHiremeSrc(mode === "dark" ? hiremeWhite : hiremeBlack);
-    console.log("mode"+ mode)
-  }, [mode]);
+  useEffect(()=>{
+console.log("mode :"+mode)
+     
+  },[mode]
+  
+  
+ )
+// console.log(localStorage.getItem("theme"))
 
   return (
     <div
@@ -22,11 +22,19 @@ const HireMe: React.FC = () => {
     md:right-8 md:left-auto md:top-0 md:bottom-auto md:absolute md:z-20"
     >
       <div className="w-48 h-auto flex items-center justify-center relative md:w-24">
-        <Image
-          src={hiremeSrc}
+        {
+          mode === "dark"? (
+            <Image
+          src={hiremeWhite}
           alt="hireme"
           className="animate-spin-slow"
         />
+          ):(<Image
+            src={hiremeBlack}
+            alt="hireme"
+            className="animate-spin-slow"
+          />)
+        }
         <Link
           href="mailto:anik.muntasir005@gmail.com"
           target="_blank"
