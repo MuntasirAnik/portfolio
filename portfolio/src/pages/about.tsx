@@ -80,8 +80,8 @@ const About = () => {
                 alt="profile"
                 className="w-full h-auto rounded-2xl"
                 priority
-                sizes="(max-width:768px) 100vw,
-                (max-width: 1200px) 50vw,33vw"
+                // sizes="(max-width:768px) 100vw,
+                // (max-width: 1200px) 50vw,33vw"
               />
             </div>
             <div className="col-span-2 flex flex-col items-end justify-between xl:col-span-8 xl:items-center md:order-3">

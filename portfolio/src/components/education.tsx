@@ -55,12 +55,12 @@ const Education = () => {
         <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
           <Details
             type="Master of Science In Software Engineering"
-            time="2019-present"
+            time="2019 - present"
             place="Independent University, Bangladesh"
           />
           <Details
             type="Bachelor of Science In Computer Science"
-            time="2014-2018"
+            time="2014 - 2018"
             place="Independent University, Bangladesh"
           />
           <Details
