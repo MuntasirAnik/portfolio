@@ -7,11 +7,13 @@ import useThemeSwitcher from "./hooks/useThemeSwitcher";
 
 const HireMe = () => {
   const {mode, setMode} = useThemeSwitcher();
+
   useEffect(()=>{
-console.log("mode :"+mode)
-     
+    if(window.localStorage.getItem("theme")){
+      console.log("mode "+localStorage.getItem("theme"))
+     //setMode()
+    }
   },[mode]
-  
   
  )
 // console.log(localStorage.getItem("theme"))
