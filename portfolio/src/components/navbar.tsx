@@ -127,20 +127,22 @@ const Navbar = () => {
             target={"_blank"}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
-            className="w-6 mr-3 border border-solid dark:border-light rounded-lg"
+            className="w-6 mr-3 border border-solidborder-dark dark:border-light rounded-lg "
           >
             <GithubIcon />
           </motion.a>
-          <button
+          <motion.button
             onClick={() => setMode(mode === "light" ? "dark" : "light")}
-            className="flex item-center justify-center rounded-full"
+            className="flex item-center justify-center rounded-full border border-solid border-dark dark:border-light p-1"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.9 }}
           >
             {mode === "dark" ? (
               <BsFillSunFill className="fill-light" />
             ) : (
-              <BsFillMoonStarsFill className="fill-dark" />
+              <BsFillMoonStarsFill className="fill-dark " />
             )}
-          </button>
+          </motion.button>
         </nav>
       </div>
 
