@@ -49,9 +49,9 @@ export default function Home() {
                   border-2 border-solid border-transparent hover:border-dark dark:bg-light dark:text-dark hover:dark:bg-dark
                   hover:dark:text-light hover:dark:border-light md:p-2 md:px-4 md:text-base
                   "
-                  download={true}
+                  //download={true}
                 >
-                  Resume <LinkArrow className="w-6 ml-1" />
+                  Resume 
                 </Link>
                 <Link
                   href="mailto:anik.muntasir005@gmail.com"
