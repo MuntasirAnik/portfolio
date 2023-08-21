@@ -204,7 +204,7 @@ const Navbar = () => {
               {mode === "dark" ? (
                 <BsFillSunFill className="fill-light dark:fill-dark" />
               ) : (
-                <BsFillMoonStarsFill className="w-6 h-6 rounded-lg border border-solid dark:border-light p-1" />
+                <BsFillMoonStarsFill className="w-6 h-6 rounded-lg border border-solid dark:border-light p-1 fill-light" />
               )}
             </button>
           </nav>
