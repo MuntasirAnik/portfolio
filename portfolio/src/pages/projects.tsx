@@ -5,7 +5,8 @@ import Head from "next/head";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
-import project1 from "../../public/images/projects/crypto-screener-cover-image.jpg";
+import ecom from "../../public/images/projects/ecom.png";
+import akijventure from "../../public/images/projects/akijventure.png";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/transitionEffect";
 
@@ -133,7 +134,7 @@ const Project: React.FC<ProjectProps> = ({
             target="_blank"
             className="text-sm font-semibold underline md:text-base xs:text-sm"
           >
-            Visits
+            Visit
           </Link>
           <Link href={github} target="_blank" className="w-8 md:w-6">
             <GithubIcon />
@@ -163,28 +164,28 @@ const Projects = () => {
             <div className="col-span-12">
               <FeaturedProject
                 type="Featured Project"
-                title="Crypto Screener Application"
-                img={project1}
+                title="Akij ecom"
+                img={ecom}
                 summary="Summary here"
-                link="/"
+                link="https://shop.akijvg.net/"
                 github="/"
               />
             </div>
             <div className="col-span-6 sm:col-span-12">
               <Project
-                type="Featured Project"
-                title="Crypto Screener Application"
-                img={project1}
+                type=""
+                title="Akij Venture Group Website"
+                img={akijventure}
                 summary="Summary here"
-                link="/"
+                link="https://www.akijventure.com/"
                 github="/"
               />
             </div>
             <div className="col-span-6 sm:col-span-12">
               <Project
-                type="Featured Project"
+                type=""
                 title="Crypto Screener Application"
-                img={project1}
+                img={ecom}
                 summary="Summary here"
                 link="/"
                 github="/"

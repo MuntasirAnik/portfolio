@@ -44,7 +44,7 @@ const Education = () => {
   });
   return (
     <div className="my-56">
-      <h2 className="font-bold text-8xl mb-28 w-full text-center text-[#5651e5] md:text-6xl xs:text-4xl md:mb-16">
+      <h2 className="font-bold text-8xl mb-28 w-full text-center text-[#3f85cc] md:text-6xl xs:text-4xl md:mb-16">
         Education
       </h2>
       <div ref={ref} className="w-[75%] mx-auto relative lg:w-[90%] md:w-full">
@@ -70,8 +70,8 @@ const Education = () => {
           />
           <Details
             type="Secondary School Certificate"
-            time="2013"
-            place="Ahmmed Uddin Shah Shishu Niketan School & Collage Gaibandha"
+            time="2011"
+            place="Ahammed Uddin Shah Shishu Niketan School & Collage Gaibandha"
           />
         </ul>
       </div>

@@ -18,9 +18,6 @@ const Details: React.FC<DetailsProps> = ({
   address,
 }) => {
   const ref = useRef(null);
-  
-  
-  //const experience2 = calculateExperience(new Date('21-10-2021'), new Date('31-01-2022'));
   return (
     <li
       ref={ref}
@@ -45,7 +42,7 @@ const Details: React.FC<DetailsProps> = ({
           </a>
           <br />
         </span>
-        <span className="capitalize font-bold text-dark/75 dark:text-light/75 xs:text-xs sm:text-xs lg:text-sm xl:text-sm">
+        <span className="capitalize font-bold text-dark/75 dark:text-light/75 xs:text-xs sm:text-xs lg:text-sm xl:text-sm ">
           {time} 
         </span>
         <br />
@@ -84,7 +81,7 @@ const Experience = () => {
   });
   return (
     <div className="">
-      <h2 className="font-bold text-8xl mt-16 mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16 text-[#5651e5]">
+      <h2 className="font-bold text-8xl mt-16 mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16 text-[#3f85cc]">
         Experience
       </h2>
       <div ref={ref} className="w-[75%] mx-auto relative lg:w-[90%] md:w-full">

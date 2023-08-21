@@ -6,7 +6,7 @@ const Skills = () => {
   return (
     <div className="w-full p-2 pt-24 ">
       <div className="max-w-[1240px] mx-auto flex flex-col justify-center">
-        <p className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-8 text-[#5651e5]">
+        <p className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-8 text-[#3f85cc]">
           Skills
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 xl:grid-cols-2 2xl:grid-cols-2 sm:grid-cols-1 3xl:grid-cols-2">
