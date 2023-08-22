@@ -57,11 +57,11 @@ const Details: React.FC<DetailsProps> = ({
 const Experience = () => {
   const calculateExperience = (startDate: Date, endDate: Date) => {
     const timeDiff = endDate.getTime() - startDate.getTime();
-    const years = Math.floor(timeDiff / (365 * 24 * 60 * 60 * 1000));
-    const months = Math.floor((timeDiff % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000));
-    const days = Math.floor((timeDiff % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000));
+    const years = Math.floor(timeDiff / (365 * 24 * 60 * 60 * 1000)).toString();
+    const months = Math.floor((timeDiff % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000)).toString();
+    const days = Math.floor((timeDiff % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000)).toString();
 
-    if (years === 0) {
+    if (years === '0') {
       return `${months} months, ${days} days`;
     } else {
       return `${years} years, ${months} months, ${days} days`;
