@@ -43,7 +43,7 @@ const Details: React.FC<DetailsProps> = ({
           <br />
         </span>
         <span className="capitalize font-bold text-dark/75 dark:text-light/75 xs:text-xs sm:text-xs lg:text-sm xl:text-sm ">
-          {time} 
+          {time}
         </span>
         <br />
         <span className="font-medium w-full text-dark/80 dark:text-light/80 xs:text-sm">
@@ -58,21 +58,28 @@ const Experience = () => {
   const calculateExperience = (startDate: Date, endDate: Date) => {
     const timeDiff = endDate.getTime() - startDate.getTime();
     const years = Math.floor(timeDiff / (365 * 24 * 60 * 60 * 1000)).toString();
-    const months = Math.floor((timeDiff % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000)).toString();
-    const days = Math.floor((timeDiff % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000)).toString();
+    const months = Math.floor(
+      (timeDiff % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000)
+    ).toString();
+    const days = Math.floor(
+      (timeDiff % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000)
+    ).toString();
 
-    if (years === '0') {
+    if (years === "0") {
       return `${months} months, ${days} days`;
     } else {
       return `${years} years, ${months} months, ${days} days`;
     }
   };
 
-  const startDate = new Date('02-02-2022');
+  const startDate = new Date("02-02-2022");
   const currentDate = new Date(); // Current date
 
   const experience1 = calculateExperience(startDate, currentDate);
-  const experience2 = calculateExperience(new Date('10-21-2021'), new Date('01-31-2022'));
+  const experience2 = calculateExperience(
+    new Date("10-21-2021"),
+    new Date("01-31-2022")
+  );
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -95,14 +102,14 @@ const Experience = () => {
             position="Software Developer"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`Feb-22 - Present ( ${experience1} )`}
+            time={`Feb-22 - Present`}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
           <Details
             position="Software Developer - Intern"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`Oct-12 - Jan-31 ( ${experience2} )`}
+            time={`Oct-12 - Jan-31`}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
         </ul>

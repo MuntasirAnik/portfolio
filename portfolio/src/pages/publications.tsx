@@ -29,7 +29,7 @@ const FeaturedArticle: React.FC<ArticleProps> = ({ img, title, link }) => {
           src={img}
           alt={title}
           className="w-full h-auto rounded-lg"
-          whileHover={{ scale: 1.03}}
+          whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.4 }}
           priority
           sizes="(max-width:768px) 100vw,
