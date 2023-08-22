@@ -145,7 +145,6 @@ const Project: React.FC<ProjectProps> = ({
   );
 };
 
-
 const Projects = () => {
   return (
     <>
@@ -181,7 +180,7 @@ const Projects = () => {
                 github="/"
               />
             </div>
-            <div className="col-span-6 sm:col-span-12">
+            {/* <div className="col-span-6 sm:col-span-12">
               <Project
                 type=""
                 title="Crypto Screener Application"
@@ -189,8 +188,8 @@ const Projects = () => {
                 summary="Summary here"
                 link="/"
                 github="/"
-              />
-            </div>
+            />
+            </div> */}
           </div>
         </Layout>
       </main>
