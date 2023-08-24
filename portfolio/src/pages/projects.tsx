@@ -145,6 +145,7 @@ const Project: React.FC<ProjectProps> = ({
   );
 };
 
+
 const Projects = () => {
   return (
     <>
@@ -165,7 +166,7 @@ const Projects = () => {
                 type="Featured Project"
                 title="Akij ecom"
                 img={ecom}
-                summary="Summary here"
+                summary="Next js, Tailwind CSS, Node js, Express, Sanity, MongoDB"
                 link="https://shop.akijvg.net/"
                 github="/"
               />
@@ -175,7 +176,7 @@ const Projects = () => {
                 type=""
                 title="Akij Venture Group Website"
                 img={akijventure}
-                summary="Summary here"
+                summary="kij Venture Group e-commerce"
                 link="https://www.akijventure.com/"
                 github="/"
               />
@@ -188,7 +189,7 @@ const Projects = () => {
                 summary="Summary here"
                 link="/"
                 github="/"
-            />
+              />
             </div> */}
           </div>
         </Layout>
