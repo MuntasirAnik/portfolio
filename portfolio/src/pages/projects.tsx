@@ -7,6 +7,7 @@ import Link from "next/link";
 import React from "react";
 import ecom from "../../public/images/projects/ecom.png";
 import akijventure from "../../public/images/projects/akijventure.png";
+import sbms from "../../public/images/projects/project3.png";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/transitionEffect";
 
@@ -95,7 +96,7 @@ const Project: React.FC<ProjectProps> = ({
 }) => {
   return (
     <article
-      className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
+      className="w-full sm:h-auto xl:h-[400px] 2xl:h-[400px] 3xl:h-[500px] flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
      bg-light p-6 relative dark:bg-dark dark:border-solid dark:border-2 dark:border-light xs:p-4"
     >
       <div
@@ -124,10 +125,13 @@ const Project: React.FC<ProjectProps> = ({
           target="_blank"
           className="hover:underline underline-offset-2"
         >
-          <h2 className="my-1 w-full text-left text-2xl font-bold lg:text-2xl xs:text-sm">
+          <h2 className="my-1 w-full text-left text-2xl font-bold xs:text-sm md:text-sm lg:text-sm xl:text-sm">
             {title}
           </h2>
         </Link>
+        <p className="my-2 font-medium text-dark dark:text-light sm:text-sm md:text-sm lg:text-sm">
+          {summary}
+        </p>
         <div className="w-full flex items-center justify-between">
           <Link
             href={link}
@@ -176,21 +180,21 @@ const Projects = () => {
                 type=""
                 title="Akij Venture Group Website"
                 img={akijventure}
-                summary="kij Venture Group e-commerce"
+                summary="Next js, Tailwind CSS, Sanity"
                 link="https://www.akijventure.com/"
                 github="/"
               />
             </div>
-            {/* <div className="col-span-6 sm:col-span-12">
+            <div className="col-span-6 sm:col-span-12">
               <Project
                 type=""
-                title="Crypto Screener Application"
-                img={ecom}
-                summary="Summary here"
-                link="/"
-                github="/"
+                title="Stock Business Management System"
+                img={sbms}
+                summary="HTML, CSS, Javascript, C#, MSSQL"
+                link="https://github.com/MuntasirAnik/small_business_management_system"
+                github="https://github.com/MuntasirAnik/small_business_management_system"
               />
-            </div> */}
+            </div>
           </div>
         </Layout>
       </main>
