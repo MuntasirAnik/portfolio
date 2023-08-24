@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import ecom from "../../public/images/projects/ecom.png";
 import akijventure from "../../public/images/projects/akijventure.png";
-import sbms from "../../public/images/projects/project3.png";
+import sbms from "../../public/images/projects/project-04.png";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/transitionEffect";
 
@@ -69,14 +69,21 @@ const FeaturedProject: React.FC<ProjectProps> = ({
         <p className="my-2 font-medium text-dark dark:text-light sm:text-sm">
           {summary}
         </p>
-        <div className="mt-2 flex items-center">
-          <Link href={github} target="_blank" className="w-10">
-            <GithubIcon />
+        <div className="w-full mt-2 flex items-center justify-between">
+          <Link href={"/"} target="_blank"
+          onClick={(e) => {
+            if (title === "Akij ecom") {
+              e.preventDefault(); 
+            }
+          }}
+          className={`w-10 ${title==="Akij ecom" ? "opacity-50 cursor-not-allowed" :"hover:opacity-75"}`} 
+                > 
+          <GithubIcon />
           </Link>
           <Link
             href={link}
             target="_blank"
-            className="ml-4 rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base"
+            className="ml-8 rounded-lg bg-dark text-light p-2 px-6 text-lg font-semibold sm:px-4 sm:text-base"
           >
             Visit Project
           </Link>
@@ -96,7 +103,7 @@ const Project: React.FC<ProjectProps> = ({
 }) => {
   return (
     <article
-      className="w-full sm:h-auto xl:h-[400px] 2xl:h-[400px] 3xl:h-[500px] flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
+      className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
      bg-light p-6 relative dark:bg-dark dark:border-solid dark:border-2 dark:border-light xs:p-4"
     >
       <div
@@ -138,9 +145,18 @@ const Project: React.FC<ProjectProps> = ({
             target="_blank"
             className="text-sm font-semibold underline md:text-base xs:text-sm"
           >
-            Visit
+            {
+              title==='Stock Business Management System'? "": "Visit"
+            }
+            
           </Link>
-          <Link href={github} target="_blank" className="w-8 md:w-6">
+          <Link href={github} target="_blank"
+          onClick={(e) => {
+            if (title === "Akij Venture Group Website") {
+              e.preventDefault();
+            }
+          }}
+                className={`w-8 md:w-6 ${title==="Akij Venture Group Website" ? "opacity-50 cursor-not-allowed" :"hover:opacity-75"}`} >
             <GithubIcon />
           </Link>
         </div>
