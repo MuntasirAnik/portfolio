@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import Head from "next/head";
 import Image from "next/image";
-import profulePic from "../../public/images/profile/developer-pic-1.png";
+import profulePic from "../../public/images/profile/profile-pic-3.jpeg";
 import AnimatedText from "@/components/animatedText";
 import Link from "next/link";
 import { LinkArrow } from "@/components/icons";
@@ -20,14 +20,14 @@ export default function Home() {
       <main className="flex items-center text-dark w-full dark:text-light">
         <Layout className="pt-0 md:pt-16 sm:pt-8">
           <div className="flex items-center justify-between lg:flex-col">
-            <div className="w-1/2 md:w-full">
+            <div className="w-1/2 md:w-full h-1/2 p-8">
               <Image
                 src={profulePic}
                 alt="image"
-                className="w-full h-auto md:inline-block md:w-full"
+                className="w-auto md:inline-block md:w-full rounded-xl"
                 priority
-                sizes="(max-width:768px) 100vw,
-                (max-width: 1200px) 50vw,50vw"
+                // sizes="(max-width:768px) 100vw,
+                // (max-width: 1200px) 50vw,50vw"
               />
             </div>
             <div className="w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center">
