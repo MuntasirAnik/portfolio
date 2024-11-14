@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll } from "framer-motion";
 import LiIcon from "./liIcon";
 
@@ -36,6 +36,7 @@ const Details: React.FC<DetailsProps> = ({
           <a
             href={companyLinks}
             target="_blank"
+            rel="noopener noreferrer"
             className="capitalize underline dark:text-primaryDark"
           >
             {company}
@@ -55,6 +56,9 @@ const Details: React.FC<DetailsProps> = ({
 };
 
 const Experience = () => {
+  const [experience1, setExperience1] = useState("");
+  const [experience2, setExperience2] = useState("");
+
   const calculateExperience = (startDate: Date, endDate: Date) => {
     const timeDiff = endDate.getTime() - startDate.getTime();
     const years = Math.floor(timeDiff / (365 * 24 * 60 * 60 * 1000)).toString();
@@ -66,26 +70,28 @@ const Experience = () => {
     ).toString();
 
     if (years === "0") {
-      return `${months} months, ${days} days`;
+      return `${months} months ${days} days`;
     } else {
-      return `${years} years, ${months} months, ${days} days`;
+      return `${years} years ${months} months ${days} days`;
     }
   };
 
-  const startDate = new Date("02-02-2022");
-  const currentDate = new Date(); // Current date
+  useEffect(() => {
+    const startDate = new Date("02-02-2022");
+    const currentDate = new Date(); // Current date
+    setExperience1(calculateExperience(startDate, currentDate));
 
-  const experience1 = calculateExperience(startDate, currentDate);
-  const experience2 = calculateExperience(
-    new Date("10-21-2021"),
-    new Date("01-31-2022")
-  );
+    const internStartDate = new Date("10-21-2021");
+    const internEndDate = new Date("01-31-2022");
+    setExperience2(calculateExperience(internStartDate, internEndDate));
+  }, []);
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "center start"],
   });
+
   return (
     <div className="">
       <h2 className="font-bold text-8xl mt-16 mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16 text-[#3f85cc]">
@@ -102,14 +108,14 @@ const Experience = () => {
             position="Software Developer"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`Feb-22 - Present`}
+            time={`Feb-22 - Present ( ${experience1}) `}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
           <Details
             position="Software Developer - Intern"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`Oct-12 - Jan-31`}
+            time={`Oct-21 - Jan-31 ( ${experience2}) `}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
         </ul>

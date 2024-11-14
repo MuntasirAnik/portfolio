@@ -56,7 +56,7 @@ const About = () => {
                 Biography
               </h2>
               <p className="font-medium">
-                Hi, I am Muntasir, a web developer With almost 2 years of
+                Hi, I am Muntasir, a web developer With almost 3 years of
                 experience in the field.
               </p>
               <p className="my-4 font-medium">
@@ -87,7 +87,7 @@ const About = () => {
             <div className="col-span-2 flex flex-col items-end justify-between xl:col-span-8 xl:items-center md:order-3">
               <div className="flex flex-col items-end justify-center xl:items-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumber value={24} />
+                  <AnimatedNumber value={34} />
                 </span>
                 <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
                   months of experience

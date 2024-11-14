@@ -8,6 +8,8 @@ import React from "react";
 import ecom from "../../public/images/projects/ecom.png";
 import akijventure from "../../public/images/projects/akijventure.png";
 import sbms from "../../public/images/projects/project-04.png";
+import store from "../../public/images/projects/store.png";
+import hrms from "../../public/images/projects/HRMS.png";
 import { motion } from "framer-motion";
 import TransitionEffect from "@/components/transitionEffect";
 
@@ -20,6 +22,8 @@ interface ProjectProps {
   link: string;
   github: string;
 }
+const disabledTitles = ["Akij Venture Group Website", "HRMS", "Store Sales (Retail Sales)"];
+
 
 const FeaturedProject: React.FC<ProjectProps> = ({
   type,
@@ -102,6 +106,7 @@ const Project: React.FC<ProjectProps> = ({
   github,
 }) => {
   return (
+    
     <article
       className="w-full flex flex-col items-center justify-center rounded-2xl border border-solid border-dark
      bg-light p-6 relative dark:bg-dark dark:border-solid dark:border-2 dark:border-light xs:p-4"
@@ -156,7 +161,8 @@ const Project: React.FC<ProjectProps> = ({
               e.preventDefault();
             }
           }}
-                className={`w-8 md:w-6 ${title==="Akij Venture Group Website" ? "opacity-50 cursor-not-allowed" :"hover:opacity-75"}`} >
+          className={`w-8 md:w-6 ${disabledTitles.includes(title) ? "opacity-50 cursor-not-allowed" : "hover:opacity-75"}`}
+>
             <GithubIcon />
           </Link>
         </div>
@@ -209,6 +215,26 @@ const Projects = () => {
                 summary="HTML, CSS, Javascript, C#, MSSQL"
                 link="https://github.com/MuntasirAnik/small_business_management_system"
                 github="https://github.com/MuntasirAnik/small_business_management_system"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-12">
+              <Project
+                type=""
+                title="Store Sales (Retail Sales)"
+                img={store}
+                summary="Nest Js, MySQL, nextjs, Antd, NextAuth, tailwind CSS, NEXTUI"
+                link="https://store.neoscoder.com/"
+                github="/"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-12">
+              <Project
+                type=""
+                title="HRMS"
+                img={hrms}
+                summary="Nest Js, MySQL, Next JS, tailwind CSS"
+                link="https://hris.neoscoder.com/"
+                github="/"
               />
             </div>
           </div>
