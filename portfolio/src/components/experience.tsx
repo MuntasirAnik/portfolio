@@ -104,25 +104,28 @@ const Experience = () => {
           md:w-[2px] md:left-[30px] xs:left-[20px]"
         />
         <ul className="w-full flex flex-col justify-start ml-4 xs:ml-2">
-        <Details
+          <Details
             position="Software Engineer"
             company="NeosCoder"
             companyLinks="https://www.neoscoder.com/"
             time={`01 Nov 2022 - Present  (${experience3})`}
+            // time={`01 Nov 2022 - Present`}
             address="13/1 Ka Panthapath, Dhaka 1215"
           />
           <Details
             position="Software Engineer"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`02 Feb 2022 - 31 Oct 2024  (${experience1})`}
+            // time={`02 Feb 2022 - 31 Oct 2024  (${experience1})`}
+            time={`02 Feb 2022 - 31 Oct 2024 (2 years 8 months 29 days)`}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
           <Details
             position="Software Engineer - Intern"
             company="Akij Venture Group"
             companyLinks="https://akijventure.com/"
-            time={`19 Ocr 2021 - 01 Feb 2022  (${experience2})`}
+            // time={`19 Ocr 2021 - 01 Feb 2022  (${experience2})`}
+            time={`19 Ocr 2021 - 01 Feb 2022 (3 months 12 days)`}
             address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
           />
         </ul>

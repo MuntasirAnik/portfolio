@@ -56,7 +56,7 @@ const About = () => {
                 Biography
               </h2>
               <p className="font-medium">
-                Hi, I am Muntasir, a web developer With almost 2 years of
+                Hi, I am Muntasir, a web developer With 3+ years of
                 experience in the field.
               </p>
               <p className="my-4 font-medium">
@@ -80,8 +80,8 @@ const About = () => {
                 alt="profile"
                 className="w-full h-auto rounded-2xl"
                 priority
-                // sizes="(max-width:768px) 100vw,
-                // (max-width: 1200px) 50vw,33vw"
+              // sizes="(max-width:768px) 100vw,
+              // (max-width: 1200px) 50vw,33vw"
               />
             </div>
             <div className="col-span-2 flex flex-col items-end justify-between xl:col-span-8 xl:items-center md:order-3">
