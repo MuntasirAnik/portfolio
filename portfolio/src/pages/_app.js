@@ -116,6 +116,10 @@ export default function App({ Component, pageProps }) {
         <meta name="theme-color" content="#1d1d1f" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
 
+        {/* Performance hints */}
+        <link rel="dns-prefetch" href="https://api.github.com" />
+        <link rel="preconnect" href="https://api.github.com" crossOrigin="anonymous" />
+
         {/* Default SEO */}
         <title>Muntasir Anik — Software Engineer</title>
         <meta name="description" content="Software Engineer with 4+ years of full-stack expertise. Building innovative web applications with React, Next.js, Node.js, and .NET." />

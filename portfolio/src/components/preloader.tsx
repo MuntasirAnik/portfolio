@@ -9,17 +9,17 @@ const Preloader: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [phase, setPhase] = useState<"loading" | "exiting" | "revealing" | "done">("loading");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("exiting"), 2400);
+    const t1 = setTimeout(() => setPhase("exiting"), 800);
     return () => clearTimeout(t1);
   }, []);
 
   useEffect(() => {
     if (phase === "exiting") {
-      const t2 = setTimeout(() => setPhase("revealing"), 700);
+      const t2 = setTimeout(() => setPhase("revealing"), 300);
       return () => clearTimeout(t2);
     }
     if (phase === "revealing") {
-      const t3 = setTimeout(() => setPhase("done"), 1200);
+      const t3 = setTimeout(() => setPhase("done"), 400);
       return () => clearTimeout(t3);
     }
   }, [phase]);

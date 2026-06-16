@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { readContent, SiteContent } from "@/lib/content";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -21,10 +22,10 @@ interface HomeProps {
   githubData: GitHubData | null;
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const content = readContent();
 
-  // Fetch GitHub data server-side
+  // Fetch GitHub data at build time (refreshed via ISR)
   let githubData: GitHubData | null = null;
   try {
     const res = await fetch(
@@ -52,7 +53,7 @@ export async function getServerSideProps() {
     }
   } catch {}
 
-  return { props: { content, githubData } };
+  return { props: { content, githubData }, revalidate: 3600 };
 }
 
 export default function Home({ content, githubData }: HomeProps) {
@@ -159,8 +160,14 @@ export default function Home({ content, githubData }: HomeProps) {
               className="flex-shrink-0"
             >
               <div className="profile-glow relative w-[280px] h-[280px] rounded-[2rem] overflow-hidden xl:w-60 xl:h-60 md:w-52 md:h-52">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={profileImages.hero} alt={hero.name} className="w-full h-full object-cover" />
+                <Image
+                  src={profileImages.hero}
+                  alt={hero.name}
+                  fill
+                  sizes="(max-width: 768px) 208px, (max-width: 1280px) 240px, 280px"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </motion.div>
           </div>

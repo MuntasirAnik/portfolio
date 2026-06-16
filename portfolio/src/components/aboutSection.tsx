@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { SiteContent } from "@/lib/content";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -48,8 +49,13 @@ const AboutSection: React.FC<{ content: SiteContent }> = ({ content }) => {
             className="flex justify-center lg:order-1"
           >
             <div className="profile-glow img-zoom relative w-[320px] h-[380px] rounded-[2rem] overflow-hidden lg:w-72 lg:h-[340px] md:w-60 md:h-72">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={profileImages.about} alt="About" className="w-full h-full object-cover" />
+              <Image
+                src={profileImages.about}
+                alt="About"
+                fill
+                sizes="(max-width: 768px) 240px, (max-width: 1024px) 288px, 320px"
+                className="object-cover"
+              />
             </div>
           </motion.div>
 

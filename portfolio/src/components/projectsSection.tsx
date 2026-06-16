@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { SiteContent } from "@/lib/content";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -53,12 +54,13 @@ const ProjectsSection: React.FC<{ content: SiteContent }> = ({ content }) => {
               className="block rounded-[1.5rem] overflow-hidden card-lift gradient-border group"
               style={{ backgroundColor: "var(--card)", border: "1px solid var(--border)" }}
             >
-              <div className="overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="overflow-hidden relative h-[360px] md:h-56 sm:h-44">
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-[360px] object-cover transition-transform duration-700 group-hover:scale-[1.02] md:h-56 sm:h-44"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 980px) 100vw, 980px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="p-8 md:p-6">

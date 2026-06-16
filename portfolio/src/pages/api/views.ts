@@ -43,7 +43,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!counted) {
     views.total += 1;
     views.today += 1;
-    writeViews(views);
+
+    // Attempt to persist — will fail silently on read-only filesystems (Vercel serverless)
+    try {
+      writeViews(views);
+    } catch {}
 
     // Set cookie for 24h
     res.setHeader(
