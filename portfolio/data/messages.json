@@ -1,0 +1,18 @@
+[
+  {
+    "id": "mqeu0gazmhrb",
+    "name": "anik",
+    "email": "anik.muntasir005@gmail.com",
+    "message": "test mail",
+    "createdAt": "2026-06-15T06:28:06.923Z",
+    "read": false
+  },
+  {
+    "id": "mqetzbkbvmj1",
+    "name": "Anik",
+    "email": "anik.muntasir005@gmail.com",
+    "message": "test",
+    "createdAt": "2026-06-15T06:27:14.123Z",
+    "read": false
+  }
+]

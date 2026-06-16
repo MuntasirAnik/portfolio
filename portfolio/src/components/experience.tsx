@@ -1,136 +1,164 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, useScroll } from "framer-motion";
-import LiIcon from "./liIcon";
+import React from "react";
+import { motion, useInView } from "framer-motion";
+import type { SiteContent } from "@/lib/content";
+import { useLanguage } from "@/hooks/useLanguage";
 
-interface DetailsProps {
-  position: string;
-  company: string;
-  companyLinks: string;
-  time: string;
-  address: string;
+const ease = [0.25, 0.1, 0.25, 1];
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.7, delay: i * 0.12, ease },
+  }),
+};
+
+function calcDuration(timeStr: string): string {
+  if (!timeStr) return "";
+  const months: Record<string, number> = { Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11 };
+  const parts = timeStr.split("—").map(s => s.trim());
+  if (parts.length < 2) return "";
+
+  const parseDate = (s: string): Date | null => {
+    if (s.toLowerCase() === "present") return new Date();
+    const m = s.match(/^([A-Za-z]+)\s+(\d{4})$/);
+    if (m) return new Date(parseInt(m[2]), months[m[1]] ?? 0);
+    const y = s.match(/^(\d{4})$/);
+    if (y) return new Date(parseInt(y[1]), 0);
+    return null;
+  };
+
+  const start = parseDate(parts[0]);
+  const end = parseDate(parts[1]);
+  if (!start || !end) return "";
+
+  let totalMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  if (totalMonths < 0) totalMonths = 0;
+  const yrs = Math.floor(totalMonths / 12);
+  const mos = totalMonths % 12;
+
+  if (yrs === 0 && mos === 0) return "< 1 mo";
+  const yPart = yrs > 0 ? `${yrs} yr${yrs > 1 ? "s" : ""}` : "";
+  const mPart = mos > 0 ? `${mos} mo${mos > 1 ? "s" : ""}` : "";
+  return [yPart, mPart].filter(Boolean).join(" ");
 }
 
-const Details: React.FC<DetailsProps> = ({
-  position,
-  company,
-  companyLinks,
-  time,
-  address,
-}) => {
-  const ref = useRef(null);
+const SkillBar: React.FC<{ name: string; level: number; delay: number }> = ({ name, level, delay }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
   return (
-    <li
-      ref={ref}
-      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%]"
-    >
-      <LiIcon reference={ref} />
-      <motion.div
-        initial={{ y: 50 }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 0.8, type: "spring" }}
-      >
-        <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
-          {position}&nbsp;
-        </h3>
-        <span className="capitalize font-medium text-dark/75 dark:text-light">
-          <a
-            href={companyLinks}
-            target="_blank"
-            className="capitalize underline dark:text-primaryDark"
-          >
-            {company}
-          </a>
-          <br />
-        </span>
-        <span className="capitalize font-bold text-dark/75 dark:text-light/75 xs:text-xs sm:text-xs lg:text-sm xl:text-sm ">
-          {time}
-        </span>
-        <br />
-        <span className="font-medium w-full text-dark/80 dark:text-light/80 xs:text-sm">
-          {address}
-        </span>
-      </motion.div>
-    </li>
+    <div ref={ref} className="mb-4">
+      <div className="flex justify-between mb-1.5">
+        <span className="text-sm font-medium" style={{ color: "var(--text)" }}>{name}</span>
+        <span className="text-xs" style={{ color: "var(--text-secondary)" }}>{level}%</span>
+      </div>
+      <div className="skill-bar-track">
+        <motion.div
+          className="skill-bar-fill"
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${level}%` } : { width: 0 }}
+          transition={{ duration: 1.2, delay: delay * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+        />
+      </div>
+    </div>
   );
 };
 
-const Experience = () => {
-  const [experience1, setExperience1] = useState<string>("");
-  const [experience2, setExperience2] = useState<string>("");
-  const [experience3, setExperience3] = useState<string>("");
-  const calculateExperience = (startDate: Date, endDate: Date) => {
-    const timeDiff = endDate.getTime() - startDate.getTime();
-    const years = Math.floor(timeDiff / (365 * 24 * 60 * 60 * 1000)).toString();
-    const months = Math.floor(
-      (timeDiff % (365 * 24 * 60 * 60 * 1000)) / (30 * 24 * 60 * 60 * 1000)
-    ).toString();
-    const days = Math.floor(
-      (timeDiff % (30 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000)
-    ).toString();
-
-    if (years === "0") {
-      return `${months} months, ${days} days`;
-    } else {
-      return `${years} years, ${months} months, ${days} days`;
-    }
-  };
-
-  useEffect(() => {
-    const currentDate = new Date(); // Current date
-    setExperience1(calculateExperience(new Date("02-02-2022"), new Date("10-31-2024")));
-    setExperience2(
-      calculateExperience(new Date("10-21-2021"), new Date("01-31-2022"))
-    );
-    setExperience3(
-      calculateExperience(new Date("11-01-2024"), currentDate)
-    );
-  }, []); // Empty dependency array to run only on mount
-
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "center start"],
-  });
+const Experience: React.FC<{ content: SiteContent }> = ({ content }) => {
+  const { experience, education, skills } = content;
+  const { t } = useLanguage();
 
   return (
-    <div className="">
-      <h2 className="font-bold text-8xl mt-16 mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16 text-[#3f85cc]">
-        Experience
-      </h2>
-      <div ref={ref} className="w-[75%] mx-auto relative lg:w-[90%] md:w-full">
+    <section id="experience" className="section-white py-10 md:py-8">
+      <div className="max-w-[980px] mx-auto px-6">
+        <motion.h2
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={0} variants={fadeUp}
+          className="section-accent text-[40px] font-bold tracking-[-0.02em] text-center mb-4 md:text-3xl sm:text-2xl"
+          style={{ color: "var(--text)" }}
+        >
+          {t("exp.title")}
+        </motion.h2>
+        <motion.p
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={1} variants={fadeUp}
+          className="text-xl text-center mb-8 md:text-lg sm:text-base"
+          style={{ color: "var(--text-tertiary)" }}
+        >
+          {t("exp.subtitle")}
+        </motion.p>
+
+        {/* Work */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={container} className="mb-12">
+          <motion.h3 variants={item} className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--text-secondary)" }}>
+            {t("exp.work")}
+          </motion.h3>
+          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+            {experience.map((exp, idx) => (
+              <motion.div key={idx} variants={item} className="py-6 flex items-start justify-between gap-4 md:flex-col md:gap-1">
+                <div>
+                  <h4 className="text-lg font-semibold md:text-base" style={{ color: "var(--text)" }}>{exp.position}</h4>
+                  <a href={exp.companyLink} target="_blank" rel="noopener noreferrer" className="link-blue text-base md:text-sm">{exp.company}</a>
+                </div>
+                <div className="text-right md:text-left">
+                  <span className="text-sm whitespace-nowrap" style={{ color: "var(--text-secondary)" }}>{exp.time}</span>
+                  {calcDuration(exp.time) && (
+                    <span className="block text-xs mt-0.5" style={{ color: "var(--text-tertiary)" }}>{calcDuration(exp.time)}</span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Education */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={container} className="mb-12">
+          <motion.h3 variants={item} className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--text-secondary)" }}>
+            {t("exp.education")}
+          </motion.h3>
+          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+            {education.map((edu, idx) => (
+              <motion.div key={idx} variants={item} className="py-6 flex items-start justify-between gap-4 md:flex-col md:gap-1">
+                <div>
+                  <h4 className="text-lg font-semibold md:text-base" style={{ color: "var(--text)" }}>{edu.degree}</h4>
+                  <p className="text-base md:text-sm" style={{ color: "var(--text-tertiary)" }}>{edu.place}</p>
+                </div>
+                <span className="text-sm whitespace-nowrap" style={{ color: "var(--text-secondary)" }}>{edu.time}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Skills — Animated Bars */}
         <motion.div
-          style={{ scaleY: scrollYProgress }}
-          className="absolute left-9 top-0 w-[4px] h-full bg-dark dark:text-light origin-top dark:bg-light 
-          md:w-[2px] md:left-[30px] xs:left-[20px]"
-        />
-        <ul className="w-full flex flex-col justify-start ml-4 xs:ml-2">
-          <Details
-            position="Software Engineer"
-            company="NeosCoder"
-            companyLinks="https://www.neoscoder.com/"
-            time={`01 Nov 2022 - Present  (${experience3})`}
-            // time={`01 Nov 2022 - Present`}
-            address="13/1 Ka Panthapath, Dhaka 1215"
-          />
-          <Details
-            position="Software Engineer"
-            company="Akij Venture Group"
-            companyLinks="https://akijventure.com/"
-            // time={`02 Feb 2022 - 31 Oct 2024  (${experience1})`}
-            time={`02 Feb 2022 - 31 Oct 2024 (2 years 8 months 29 days)`}
-            address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
-          />
-          <Details
-            position="Software Engineer - Intern"
-            company="Akij Venture Group"
-            companyLinks="https://akijventure.com/"
-            // time={`19 Ocr 2021 - 01 Feb 2022  (${experience2})`}
-            time={`19 Ocr 2021 - 01 Feb 2022 (3 months 12 days)`}
-            address="Akij House, 198 Bir Uttam, Mir Shawkat Sarak, Gulshan Link Road, Tejgaon, Dhaka-1208."
-          />
-        </ul>
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={container}
+        >
+          <motion.h3 variants={item} className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "var(--text-secondary)" }}>
+            {t("exp.technologies")}
+          </motion.h3>
+          <div className="grid grid-cols-2 gap-x-12 gap-y-1 lg:grid-cols-1">
+            {skills.map((skill, idx) => (
+              <SkillBar key={skill.name} name={skill.name} level={skill.level} delay={idx} />
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

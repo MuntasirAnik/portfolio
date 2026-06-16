@@ -4,46 +4,40 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        mont: ["var(--font-mont)", ...fontFamily.sans],
+        inter: ["var(--font-inter)", ...fontFamily.sans],
       },
       colors: {
-        dark: "#1b1b1b",
-        light: "#f5f5f5",
-        primary: "#B63E96", // 240,86,199
-        primaryDark: "#58E6D9", // 80,230,217
+        apple: {
+          blue: "#0071e3",
+          "blue-hover": "#0077ed",
+          gray: "#f5f5f7",
+          "gray-text": "#86868b",
+          "gray-dark": "#6e6e73",
+          black: "#1d1d1f",
+        },
       },
       animation: {
-        "spin-slow": "spin 8s linear infinite",
+        "float": "float 6s ease-in-out infinite",
+      },
+      keyframes: {
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
     },
     screens: {
-      "3xl": { min: "1535px" },
-      // => @media (max-width: 1535px) { ... }
-
       "2xl": { max: "1535px" },
-      // => @media (max-width: 1535px) { ... }
-
       xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
-
       lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
-
       md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
-
       sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
-
       xs: { max: "479px" },
-      // => @media (max-width: 479px) { ... }
     },
   },
   plugins: [],

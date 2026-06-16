@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "name": "Muntasir Anik",
+    "title": "Software Engineer",
+    "roles": [
+      "Software Engineer",
+      "Tech Enthusiast"
+    ],
+    "description": "Turning ideas into innovative web applications."
+  },
+  "about": {
+    "bio": [
+      "I'm a software engineer with over 4 years of experience building web applications that people love to use.",
+      "I focus on creating clean, performant solutions — from enterprise systems to modern web apps. Currently working at NeosCoder, previously at Akij Venture Group."
+    ],
+    "stats": [
+      {
+        "value": "4+",
+        "label": "Years"
+      },
+      {
+        "value": "8+",
+        "label": "Projects"
+      },
+      {
+        "value": "1",
+        "label": "Publication"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "position": "Software Engineer",
+      "company": "NeosCoder",
+      "companyLink": "https://www.neoscoder.com/",
+      "time": "Nov 2024 — Present"
+    },
+    {
+      "position": "Software Engineer",
+      "company": "Akij Venture Group",
+      "companyLink": "https://akijventure.com/",
+      "time": "Feb 2022 — Oct 2024"
+    },
+    {
+      "position": "Software Engineer — Intern",
+      "company": "Akij Venture Group",
+      "companyLink": "https://akijventure.com/",
+      "time": "Oct 2021 — Feb 2022"
+    }
+  ],
+  "education": [
+    {
+      "degree": "MSc Software Engineering",
+      "place": "Independent University, Bangladesh",
+      "time": "2019 — Present"
+    },
+    {
+      "degree": "BSc Computer Science",
+      "place": "Independent University, Bangladesh",
+      "time": "2014 — 2018"
+    }
+  ],
+  "skills": [
+    {
+      "name": "TypeScript",
+      "level": 90
+    },
+    {
+      "name": "JavaScript",
+      "level": 89
+    },
+    {
+      "name": "React",
+      "level": 92
+    },
+    {
+      "name": "Next.js",
+      "level": 88
+    },
+    {
+      "name": "Node.js",
+      "level": 85
+    },
+    {
+      "name": "NestJS",
+      "level": 80
+    },
+    {
+      "name": "C#",
+      "level": 82
+    },
+    {
+      "name": ".NET Core",
+      "level": 78
+    },
+    {
+      "name": "SQL",
+      "level": 85
+    },
+    {
+      "name": "MongoDB",
+      "level": 75
+    },
+    {
+      "name": "Tailwind CSS",
+      "level": 90
+    },
+    {
+      "name": "HTML/CSS",
+      "level": 95
+    }
+  ],
+  "projects": [
+    {
+      "title": "HRMS",
+      "description": "",
+      "tech": "Nest JS, MySQL, Typescript",
+      "image": "/images/uploads/1781580043809.png",
+      "link": "hris.neoscoder.com"
+    },
+    {
+      "title": "Metro Mart Retail Sales System POS",
+      "description": "",
+      "tech": "nest JS, MySQL, Typescript",
+      "image": "/images/uploads/1781580527331.png",
+      "link": "https://store.neoscoder.com/"
+    },
+    {
+      "title": "JetAPI",
+      "description": "",
+      "tech": "Nest JS, Next JS, postgresql",
+      "image": "/images/uploads/1781580280290.png",
+      "link": "https://neosclient.neoscoder.com/"
+    },
+    {
+      "title": "Stock Management System",
+      "description": "Desktop business management app for stock tracking and invoicing.",
+      "tech": "ASP DOT NET · MSSQL · JavaScript",
+      "image": "/images/projects/project-04.png",
+      "link": "https://github.com/MuntasirAnik/small_business_management_system"
+    },
+    {
+      "title": "Akij Venture Group",
+      "description": "Corporate website with dynamic content managed through Sanity CMS.",
+      "tech": "Next.js · Tailwind · Sanity",
+      "image": "/images/projects/akijventure.png",
+      "link": "https://www.akijventure.com/"
+    },
+    {
+      "title": "Akij eCommerce",
+      "description": "Full-scale eCommerce platform for one of Bangladesh's largest conglomerates.",
+      "tech": "Next.js · Tailwind · Node.js · MongoDB",
+      "image": "/images/projects/ecom.png",
+      "link": "https://www.metromartonline.com/"
+    }
+  ],
+  "publication": {
+    "title": "Banking Software Services: Current Status, Challenges, Impact and Prospects",
+    "publisher": "Published in Springer",
+    "about": "The rapid growth of financial technology is forcing banks to adopt or upgrade core banking systems to stay competitive, efficient, and compliant. However, many banks in Bangladesh struggle with these implementations due to various challenges. This study explores those challenges and highlights their impacts, aiming to identify how local software companies can support banks in overcoming these issues and advancing digital transformation in the banking sector.",
+    "link": "https://link.springer.com/chapter/10.1007/978-981-19-9304-6_13"
+  },
+  "contact": {
+    "headline": "Get in Touch",
+    "description": "I'm open to new opportunities and collaborations."
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/muntasir-kader-anik-620a27143/",
+    "github": "https://github.com/MuntasirAnik",
+    "email": "anik.muntasir005@gmail.com",
+    "extra": []
+  },
+  "profileImages": {
+    "hero": "/images/uploads/1781518223470.jpeg",
+    "about": "/images/profile/propic-2.jpeg"
+  },
+  "github": {
+    "username": "MuntasirAnik"
+  },
+  "availability": {
+    "status": "available",
+    "text": "Open to Work"
+  },
+  "testimonials": []
+}
