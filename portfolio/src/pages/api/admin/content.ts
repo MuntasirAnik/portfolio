@@ -11,8 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const content = await readContent();
       return res.status(200).json(content);
-    } catch (err) {
-      return res.status(500).json({ error: "Failed to read content" });
+    } catch (err: any) {
+      return res.status(500).json({ error: "Failed to read content", details: err?.message || String(err) });
     }
   }
 
@@ -21,8 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const data = req.body;
       await writeContent(data);
       return res.status(200).json({ success: true });
-    } catch (err) {
-      return res.status(500).json({ error: "Failed to write content" });
+    } catch (err: any) {
+      return res.status(500).json({ error: "Failed to write content", details: err?.message || String(err) });
     }
   }
 
