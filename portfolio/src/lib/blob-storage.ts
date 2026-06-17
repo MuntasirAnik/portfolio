@@ -5,12 +5,16 @@ import path from "path";
 /**
  * Storage abstraction layer.
  *
- * - When BLOB_READ_WRITE_TOKEN is set (production on Vercel) → uses Vercel Blob.
+ * - When on Vercel (VERCEL env is set) → uses Vercel Blob (requires BLOB_READ_WRITE_TOKEN).
  * - Otherwise (local dev) → uses local filesystem as before.
  */
 
+function isVercel(): boolean {
+  return !!process.env.VERCEL;
+}
+
 export function isUsingBlob(): boolean {
-  return !!process.env.BLOB_READ_WRITE_TOKEN;
+  return isVercel() || !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
 // ─── JSON helpers ────────────────────────────────────────────────────────────
