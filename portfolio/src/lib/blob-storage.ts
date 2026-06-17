@@ -14,7 +14,8 @@ function isVercel(): boolean {
 }
 
 export function isUsingBlob(): boolean {
-  return isVercel() || !!process.env.BLOB_READ_WRITE_TOKEN;
+  // Only use Vercel Blob when deployed on Vercel — local dev always uses filesystem
+  return !!process.env.VERCEL;
 }
 
 // ─── JSON helpers ────────────────────────────────────────────────────────────
