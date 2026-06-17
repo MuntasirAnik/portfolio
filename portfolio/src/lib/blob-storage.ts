@@ -111,7 +111,7 @@ export async function uploadFileBlob(
       fs.mkdirSync(localDir, { recursive: true });
     }
     const filePath = path.join(localDir, fileName);
-    fs.writeFileSync(filePath, content);
+    fs.writeFileSync(filePath, content as unknown as Uint8Array);
     // Return a relative URL for local usage
     const relativePath = path.relative(
       path.join(process.cwd(), "public"),
@@ -121,7 +121,7 @@ export async function uploadFileBlob(
   }
 
   // Production — upload to Vercel Blob
-  const blob = await put(blobName, content, {
+  const blob = await put(blobName, content as unknown as Blob, {
     access: "public",
     contentType: contentType || "application/octet-stream",
     addRandomSuffix: false,
