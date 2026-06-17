@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
+import { readJsonBlob, writeJsonBlob } from "@/lib/blob-storage";
 
 const MESSAGES_PATH = path.join(process.cwd(), "data", "messages.json");
+const BLOB_NAME = "data/messages.json";
 
 export interface Message {
   id: string;
@@ -12,23 +13,6 @@ export interface Message {
   message: string;
   createdAt: string;
   read: boolean;
-}
-
-function readMessages(): Message[] {
-  try {
-    const raw = fs.readFileSync(MESSAGES_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
-}
-
-function writeMessages(messages: Message[]): void {
-  const dir = path.dirname(MESSAGES_PATH);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(MESSAGES_PATH, JSON.stringify(messages, null, 2), "utf-8");
 }
 
 async function sendEmailNotification(msg: Message) {
@@ -101,10 +85,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
 
     try {
-      // Save to JSON
-      const messages = readMessages();
+      // Save to storage
+      const messages = await readJsonBlob<Message[]>(BLOB_NAME, MESSAGES_PATH, []);
       messages.unshift(newMessage);
-      writeMessages(messages);
+      await writeJsonBlob(BLOB_NAME, MESSAGES_PATH, messages);
 
       // Send email notification (non-blocking — don't fail the form if email fails)
       sendEmailNotification(newMessage).catch((err) => {

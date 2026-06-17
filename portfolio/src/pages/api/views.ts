@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
 import path from "path";
+import { readJsonBlob, writeJsonBlob } from "@/lib/blob-storage";
 
 const VIEWS_PATH = path.join(process.cwd(), "data", "views.json");
+const BLOB_NAME = "data/views.json";
 
 interface ViewsData {
   total: number;
@@ -10,25 +11,14 @@ interface ViewsData {
   date: string;
 }
 
-function readViews(): ViewsData {
-  try {
-    const raw = fs.readFileSync(VIEWS_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return { total: 0, today: 0, date: "" };
-  }
-}
+const DEFAULT_VIEWS: ViewsData = { total: 0, today: 0, date: "" };
 
-function writeViews(data: ViewsData): void {
-  fs.writeFileSync(VIEWS_PATH, JSON.stringify(data, null, 2), "utf-8");
-}
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const views = readViews();
+  const views = await readJsonBlob<ViewsData>(BLOB_NAME, VIEWS_PATH, DEFAULT_VIEWS);
   const today = new Date().toISOString().slice(0, 10);
 
   // Reset daily counter if new day
@@ -44,9 +34,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     views.total += 1;
     views.today += 1;
 
-    // Attempt to persist — will fail silently on read-only filesystems (Vercel serverless)
+    // Persist — works on both local fs and Vercel Blob
     try {
-      writeViews(views);
+      await writeJsonBlob(BLOB_NAME, VIEWS_PATH, views);
     } catch {}
 
     // Set cookie for 24h

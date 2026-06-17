@@ -2,10 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { verifyAuth } from "@/lib/auth";
 import { readSettings, writeSettings } from "@/lib/settings";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // GET is public — used by _app.js to check site status
   if (req.method === "GET") {
-    const settings = readSettings();
+    const settings = await readSettings();
     return res.status(200).json(settings);
   }
 
@@ -16,14 +16,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     try {
-      const current = readSettings();
+      const current = await readSettings();
       const { siteEnabled, customCursor } = req.body;
       const updated = { ...current };
 
       if (typeof siteEnabled === "boolean") updated.siteEnabled = siteEnabled;
       if (typeof customCursor === "boolean") updated.customCursor = customCursor;
 
-      writeSettings(updated);
+      await writeSettings(updated);
       return res.status(200).json({ success: true, ...updated });
     } catch {
       return res.status(500).json({ error: "Failed to update settings" });

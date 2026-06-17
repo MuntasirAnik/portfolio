@@ -1,41 +1,30 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { verifyAuth } from "@/lib/auth";
-import fs from "fs";
 import path from "path";
+import { verifyAuth } from "@/lib/auth";
+import { readJsonBlob, writeJsonBlob } from "@/lib/blob-storage";
 import type { Message } from "@/pages/api/contact";
 
 const MESSAGES_PATH = path.join(process.cwd(), "data", "messages.json");
+const BLOB_NAME = "data/messages.json";
 
-function readMessages(): Message[] {
-  try {
-    const raw = fs.readFileSync(MESSAGES_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
-}
-
-function writeMessages(messages: Message[]): void {
-  fs.writeFileSync(MESSAGES_PATH, JSON.stringify(messages, null, 2), "utf-8");
-}
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (!verifyAuth(req)) {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
   if (req.method === "GET") {
-    return res.status(200).json(readMessages());
+    const messages = await readJsonBlob<Message[]>(BLOB_NAME, MESSAGES_PATH, []);
+    return res.status(200).json(messages);
   }
 
   // Mark message as read
   if (req.method === "PUT") {
     const { id, read } = req.body;
-    const messages = readMessages();
+    const messages = await readJsonBlob<Message[]>(BLOB_NAME, MESSAGES_PATH, []);
     const msg = messages.find((m) => m.id === id);
     if (msg) {
       msg.read = read;
-      writeMessages(messages);
+      await writeJsonBlob(BLOB_NAME, MESSAGES_PATH, messages);
     }
     return res.status(200).json({ success: true });
   }
@@ -43,8 +32,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // Delete message
   if (req.method === "DELETE") {
     const { id } = req.body;
-    const messages = readMessages().filter((m) => m.id !== id);
-    writeMessages(messages);
+    const allMessages = await readJsonBlob<Message[]>(BLOB_NAME, MESSAGES_PATH, []);
+    const filtered = allMessages.filter((m) => m.id !== id);
+    await writeJsonBlob(BLOB_NAME, MESSAGES_PATH, filtered);
     return res.status(200).json({ success: true });
   }
 

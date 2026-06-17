@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import useScrollSpy from "./hooks/useScrollSpy";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "@/hooks/useTheme";
@@ -52,28 +53,15 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <button
             onClick={() => scrollTo("hero")}
-            className="flex flex-col items-center transition-transform hover:scale-105 active:scale-95"
-            style={{ gap: 3 }}
+            className="flex items-center transition-transform hover:scale-105 active:scale-95"
           >
-            <span
-              style={{
-                fontSize: 22,
-                fontWeight: 800,
-                color: "var(--text)",
-                letterSpacing: "-0.04em",
-                lineHeight: 1,
-              }}
-            >
-              M
-            </span>
-            <span
-              style={{
-                display: "block",
-                width: 14,
-                height: 2,
-                borderRadius: 1,
-                backgroundColor: "var(--blue, #0071e3)",
-              }}
+            <Image
+              src={theme === "dark" ? "/logo-light.png" : "/logo.png"}
+              alt="Muntasir Anik"
+              width={34}
+              height={34}
+              className="rounded-md"
+              priority
             />
           </button>
 

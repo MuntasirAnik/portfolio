@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Dark rounded square background -->
+  <rect width="512" height="512" rx="96" ry="96" fill="#1d1d1f"/>
+  <!-- Stylized M monogram -->
+  <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left outer leg -->
+    <line x1="128" y1="384" x2="128" y2="128"/>
+    <!-- Left diagonal going to center -->
+    <line x1="128" y1="128" x2="216" y2="280"/>
+    <!-- Right diagonal from center -->
+    <line x1="216" y1="280" x2="256" y2="200"/>
+    <!-- Center to right diagonal -->
+    <line x1="256" y1="200" x2="296" y2="280"/>
+    <!-- Right diagonal going out -->
+    <line x1="296" y1="280" x2="384" y2="128"/>
+    <!-- Right outer leg -->
+    <line x1="384" y1="128" x2="384" y2="384"/>
+    <!-- Inner left vertical -->
+    <line x1="216" y1="384" x2="216" y2="280"/>
+    <!-- Inner right vertical -->
+    <line x1="296" y1="384" x2="296" y2="280"/>
+  </g>
+</svg>

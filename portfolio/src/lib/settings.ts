@@ -1,34 +1,20 @@
-import fs from "fs";
 import path from "path";
+import { readJsonBlob, writeJsonBlob } from "./blob-storage";
 
 const SETTINGS_PATH = path.join(process.cwd(), "data", "settings.json");
+const BLOB_NAME = "data/settings.json";
 
 export interface SiteSettings {
   siteEnabled: boolean;
   customCursor: boolean;
 }
 
-function ensureFile() {
-  if (!fs.existsSync(SETTINGS_PATH)) {
-    const dir = path.dirname(SETTINGS_PATH);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(SETTINGS_PATH, JSON.stringify({ siteEnabled: true, customCursor: true }, null, 2), "utf-8");
-  }
+const DEFAULT_SETTINGS: SiteSettings = { siteEnabled: true, customCursor: true };
+
+export async function readSettings(): Promise<SiteSettings> {
+  return readJsonBlob<SiteSettings>(BLOB_NAME, SETTINGS_PATH, DEFAULT_SETTINGS);
 }
 
-export function readSettings(): SiteSettings {
-  ensureFile();
-  try {
-    const raw = fs.readFileSync(SETTINGS_PATH, "utf-8");
-    return JSON.parse(raw);
-  } catch {
-    return { siteEnabled: true, customCursor: true };
-  }
-}
-
-export function writeSettings(data: SiteSettings): void {
-  ensureFile();
-  fs.writeFileSync(SETTINGS_PATH, JSON.stringify(data, null, 2), "utf-8");
+export async function writeSettings(data: SiteSettings): Promise<void> {
+  return writeJsonBlob(BLOB_NAME, SETTINGS_PATH, data);
 }

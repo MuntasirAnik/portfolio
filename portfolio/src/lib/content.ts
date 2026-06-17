@@ -1,7 +1,8 @@
-import fs from "fs";
 import path from "path";
+import { readJsonBlob, writeJsonBlob } from "./blob-storage";
 
 const CONTENT_PATH = path.join(process.cwd(), "data", "content.json");
+const BLOB_NAME = "data/content.json";
 
 export interface SiteContent {
   hero: {
@@ -62,6 +63,7 @@ export interface SiteContent {
   availability: {
     status: "available" | "unavailable";
     text: string;
+    icon?: string;
   };
   testimonials: {
     name: string;
@@ -72,15 +74,26 @@ export interface SiteContent {
   }[];
 }
 
-export function readContent(): SiteContent {
-  const raw = fs.readFileSync(CONTENT_PATH, "utf-8");
-  return JSON.parse(raw);
+const DEFAULT_CONTENT: SiteContent = {
+  hero: { name: "", title: "", roles: [], description: "" },
+  about: { bio: [], stats: [] },
+  experience: [],
+  education: [],
+  skills: [],
+  projects: [],
+  publication: { title: "", publisher: "", about: "", link: "" },
+  contact: { headline: "", description: "" },
+  social: { linkedin: "", github: "", email: "", extra: [] },
+  profileImages: { hero: "", about: "" },
+  github: { username: "" },
+  availability: { status: "available", text: "" },
+  testimonials: [],
+};
+
+export async function readContent(): Promise<SiteContent> {
+  return readJsonBlob<SiteContent>(BLOB_NAME, CONTENT_PATH, DEFAULT_CONTENT);
 }
 
-export function writeContent(data: SiteContent): void {
-  const dir = path.dirname(CONTENT_PATH);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.writeFileSync(CONTENT_PATH, JSON.stringify(data, null, 2), "utf-8");
+export async function writeContent(data: SiteContent): Promise<void> {
+  return writeJsonBlob(BLOB_NAME, CONTENT_PATH, data);
 }

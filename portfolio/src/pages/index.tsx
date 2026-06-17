@@ -23,7 +23,7 @@ interface HomeProps {
 }
 
 export async function getStaticProps() {
-  const content = readContent();
+  const content = await readContent();
 
   // Fetch GitHub data at build time (refreshed via ISR)
   let githubData: GitHubData | null = null;
