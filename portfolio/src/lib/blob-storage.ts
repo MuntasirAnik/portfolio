@@ -22,7 +22,8 @@ export function isUsingBlob(): boolean {
 
 /**
  * Read a JSON blob. Falls back to local file, then to `fallback`.
- * On first production read, seeds the blob from the bundled local file if it exists.
+ * On first production deploy, seeds the blob from the bundled local file
+ * ONLY if the blob does not exist yet (never overwrites existing blob data).
  */
 export async function readJsonBlob<T>(
   blobName: string,
@@ -44,22 +45,28 @@ export async function readJsonBlob<T>(
     const blobList = await list({ prefix: blobName });
     const existing = blobList.blobs.find((b) => b.pathname === blobName);
     if (existing) {
-      // For private stores, use getDownloadUrl to get a time-limited accessible URL
-      const downloadUrl = getDownloadUrl(existing.url);
-      const res = await fetch(downloadUrl);
+      // Read blob using authenticated fetch (required for private stores)
+      const token = process.env.BLOB_READ_WRITE_TOKEN;
+      const res = await fetch(existing.url, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       if (res.ok) {
         return (await res.json()) as T;
       }
+      // If authenticated fetch also fails, return fallback but DO NOT re-seed.
+      // The blob exists with admin-saved data — we must not overwrite it.
+      console.error(`[blob-storage] Failed to fetch blob ${blobName}: ${res.status}`);
+      return fallback;
     }
-  } catch {
-    // Blob read failed — fall through to local seed
+  } catch (err) {
+    console.error(`[blob-storage] Error reading blob ${blobName}:`, err);
+    return fallback;
   }
 
-  // Blob doesn't exist yet — try to seed from bundled local file
+  // Blob doesn't exist yet — seed from bundled local file (first deploy only)
   try {
     const raw = fs.readFileSync(localPath, "utf-8");
     const data = JSON.parse(raw) as T;
-    // Seed the blob for future reads
     await writeJsonBlob(blobName, localPath, data);
     return data;
   } catch {
