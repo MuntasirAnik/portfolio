@@ -92,6 +92,7 @@ export async function writeJsonBlob<T>(
     access: "private",
     contentType: "application/json",
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
 }
 
@@ -128,6 +129,7 @@ export async function uploadFileBlob(
     access: "private",
     contentType: contentType || "application/octet-stream",
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
   // Return a download URL since the store is private
   return getDownloadUrl(blob.url);
