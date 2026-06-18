@@ -22,10 +22,10 @@ interface HomeProps {
   githubData: GitHubData | null;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const content = await readContent();
 
-  // Fetch GitHub data at build time (refreshed via ISR)
+  // Fetch GitHub data on each request (cached by GitHub's CDN)
   let githubData: GitHubData | null = null;
   try {
     const res = await fetch(
@@ -53,7 +53,7 @@ export async function getStaticProps() {
     }
   } catch {}
 
-  return { props: { content, githubData }, revalidate: 3600 };
+  return { props: { content, githubData } };
 }
 
 export default function Home({ content, githubData }: HomeProps) {
