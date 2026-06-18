@@ -1,4 +1,4 @@
-import { put, del, head, list } from "@vercel/blob";
+import { put, del, head, list, getDownloadUrl } from "@vercel/blob";
 import fs from "fs";
 import path from "path";
 
@@ -44,7 +44,9 @@ export async function readJsonBlob<T>(
     const blobList = await list({ prefix: blobName });
     const existing = blobList.blobs.find((b) => b.pathname === blobName);
     if (existing) {
-      const res = await fetch(existing.url);
+      // For private stores, use getDownloadUrl to get a time-limited accessible URL
+      const downloadUrl = getDownloadUrl(existing.url);
+      const res = await fetch(downloadUrl);
       if (res.ok) {
         return (await res.json()) as T;
       }
@@ -87,7 +89,7 @@ export async function writeJsonBlob<T>(
 
   // Production — write to Vercel Blob
   await put(blobName, json, {
-    access: "public",
+    access: "private",
     contentType: "application/json",
     addRandomSuffix: false,
   });
@@ -123,11 +125,12 @@ export async function uploadFileBlob(
 
   // Production — upload to Vercel Blob
   const blob = await put(blobName, content as unknown as Blob, {
-    access: "public",
+    access: "private",
     contentType: contentType || "application/octet-stream",
     addRandomSuffix: false,
   });
-  return blob.url;
+  // Return a download URL since the store is private
+  return getDownloadUrl(blob.url);
 }
 
 /**
