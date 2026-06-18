@@ -241,6 +241,12 @@ export default function AdminDashboard() {
         body: JSON.stringify(content),
       });
       if (res.ok) {
+        // Trigger on-demand revalidation so changes appear immediately on Vercel
+        try {
+          await fetch("/api/revalidate", { method: "POST" });
+        } catch {
+          // Revalidation failure is non-critical — ISR will catch up eventually
+        }
         toast.success("All changes saved successfully");
       } else {
         const err = await res.json().catch(() => null);
